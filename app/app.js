@@ -15,7 +15,7 @@ var cookieParser = require('cookie-parser');
 
 var client_id = '40546a7c7d9a49e38f8880bb38dc6743'; // Your client id
 var client_secret = '62804dfbb7554961ac850c3332f39384'; // Your secret
-var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
+var redirect_uri = 'https://https://lyrics-helper.herokuapp.com/callback'; // Your redirect uri
 
 /**
  * Generates a random string containing numbers and letters
