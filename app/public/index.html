@@ -146,31 +146,25 @@
               'Authorization': 'Bearer ' + access_token
             },
           }).done(function (data) {
-            // console.log("CURRENT TRACK")
-            // console.log(data)
-            // console.log("_____________")
+            if (data) {
+              const artitst = data.item.artists.map(artist => artist.name);
+              const track = data.item.name;
 
-            // console.log(data.item.artists.map(artist => artist.name));
-            // console.log(data.item.name);
+              // TODO: nur ersten Artist (main) verwenden?
+              let searchQuery = "";
+              artitst.forEach(artist => searchQuery = searchQuery + artist + "+");
+              searchQuery = searchQuery + track + "+lyrics";
 
-            const artitst = data.item.artists.map(artist => artist.name);
-            const track = data.item.name;
+              // $.ajax({
+              //   url: `https://www.google.com/search?q=${searchQuery}`
+              // }).done((searchResults) => {
+              //   console.log(searchResults);
+              // })
 
-            // TODO: nur ersten Artist (main) verwenden?
-            let searchQuery = "";
-            artitst.forEach(artist => searchQuery = searchQuery + artist + "+");
-            searchQuery = searchQuery + track + "+lyrics";
-
-            // console.log("searchQuery: ", searchQuery);
-            
-            $.ajax({
-              url: `https://www.google.com/search?q=${searchQuery}`
-            }).done((searchResults) => {
-              console.log(searchResults);
-            })
-
-            window.open(`https://www.google.com/search?q=${searchQuery}`, "_blank");
-
+              window.open(`https://www.google.com/search?q=${searchQuery}`, "_blank");
+            } else {
+              alert('nothing playing')
+            }
           });
         }, false);
       }
