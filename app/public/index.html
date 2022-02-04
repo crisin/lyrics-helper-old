@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Example of the Authorization Code flow with Spotify</title>
+  <title>Lyrics Helper</title>
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
   <style type="text/css">
     #login,
@@ -16,13 +16,21 @@
       white-space: nowrap;
       width: 500px;
     }
+
+    #obtain-new-token {
+      margin-left: 50px;
+    }
+
+    #get-current-song {
+      width: 200px;
+    }
   </style>
 </head>
 
 <body>
   <div class="container">
     <div id="login">
-      <h1>This is an example of the Authorization Code flow</h1>
+      <h1>Lyrics Helper</h1>
       <a href="/login" class="btn btn-primary">Log in with Spotify</a>
     </div>
     <div id="loggedin">
@@ -30,8 +38,13 @@
       </div>
       <div id="oauth">
       </div>
+
+      <button class="btn btn-default" id="previous-song">Pevious</button>
+      <button class="btn btn-primary" id="get-current-song">Get Lyrics</button>
+      <button class="btn btn-default" id="next-song">Next</button>
+
       <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
-      <button class="btn btn-default" id="get-current-song">Get current song</button>
+
     </div>
   </div>
 
@@ -149,6 +162,7 @@
             if (data) {
               const artitst = data.item.artists.map(artist => artist.name);
               const track = data.item.name;
+              console.log(data);
 
               // TODO: nur ersten Artist (main) verwenden?
               let searchQuery = "";
@@ -165,6 +179,43 @@
             } else {
               alert('nothing playing')
             }
+          });
+        }, false);
+
+        document.getElementById('next-song').addEventListener('click', function () {
+          $.ajax({
+            type: 'POST',
+            url: 'https://api.spotify.com/v1/me/player/next',
+            headers: {
+              'Authorization': 'Bearer ' + access_token,
+              'Content-Type': 'application/json'
+            },
+          }).done(function (data) {
+            $.ajax({
+              url: 'https://api.spotify.com/v1/me/player',
+              headers: {
+                'Authorization': 'Bearer ' + access_token
+              },
+            }).done(function (data) {
+              if (data) {
+                console.log(data);
+              } else {
+                alert('nothing playing')
+              }
+            });
+          });
+        }, false);
+
+        document.getElementById('previous-song').addEventListener('click', function () {
+          $.ajax({
+            type: 'POST',
+            url: 'https://api.spotify.com/v1/me/player/previous',
+            headers: {
+              'Authorization': 'Bearer ' + access_token,
+              'Content-Type': 'application/json'
+            },
+          }).done(function (data) {
+
           });
         }, false);
       }
