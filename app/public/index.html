@@ -3,7 +3,8 @@
 
 <head>
   <title>Lyrics Helper</title>
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
   <style type="text/css">
     #login,
     #loggedin {
@@ -24,10 +25,14 @@
     #get-current-song {
       width: 200px;
     }
+
+    body {
+
+    }
   </style>
 </head>
 
-<body>
+<body class="text-white bg-dark">
   <div class="container">
     <div id="login">
       <h1>Lyrics Helper</h1>
@@ -39,10 +44,11 @@
       <div id="oauth">
       </div>
 
-      <button class="btn btn-default" id="previous-song">Pevious</button>
+      <div class="btn-group" role="group">
+      <button class="btn btn-light" id="previous-song"><i class="bi bi-caret-left"></i></button>
       <button class="btn btn-primary" id="get-current-song">Get Lyrics</button>
-      <button class="btn btn-default" id="next-song">Next</button>
-
+      <button class="btn btn-light" id="next-song"><i class="bi bi-caret-right"></i></button>
+    </div>
       <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
 
     </div>
@@ -52,9 +58,9 @@
       <h1>Logged in as {{display_name}}</h1>
       <div class="media">
         <div class="pull-left">
-          <img class="media-object" width="150" src="{{images.0.url}}" />
+          <img class="media-object mb-2" width="150" src="{{images.0.url}}" />
         </div>
-        <div class="media-body">
+        <!-- <div class="media-body">
           <dl class="dl-horizontal">
             <dt>Display name</dt><dd class="clearfix">{{display_name}}</dd>
             <dt>Id</dt><dd>{{id}}</dd>
@@ -64,16 +70,16 @@
             <dt>Profile Image</dt><dd class="clearfix"><a href="{{images.0.url}}">{{images.0.url}}</a></dd>
             <dt>Country</dt><dd>{{country}}</dd>
           </dl>
-        </div>
+        </div> -->
       </div>
     </script>
 
   <script id="oauth-template" type="text/x-handlebars-template">
-      <h2>oAuth info</h2>
+      <!-- <h2>oAuth info</h2>
       <dl class="dl-horizontal">
         <dt>Access token</dt><dd class="text-overflow">{{access_token}}</dd>
         <dt>Refresh token</dt><dd class="text-overflow">{{refresh_token}}</dd>
-      </dl>
+      </dl> -->
     </script>
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
