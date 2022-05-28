@@ -55,7 +55,7 @@
           <button class="btn btn-primary" id="get-current-song">
             Get Lyrics
           </button>
-          <button class="btn btn-error" id="get-current-album">
+          <button class="btn btn-warning" id="get-current-album">
             Get Album
           </button>
           <button class="btn btn-light" id="next-song">
@@ -217,15 +217,16 @@
 
                    
                   const uri = data.item.uri;
+                  console.log(uri)
 
                   $.ajax({
                     type: "POST",
-                    url: `https://api.spotify.com/v1/playlists/${uri}/tracks`,
+                    url: `https://api.spotify.com/v1/playlists/224pB6VGtcY5OxAGdKYGc7/tracks`,
                     headers: {
                       Authorization: "Bearer " + access_token,
                       "Content-Type": "application/json",
                     },
-                    data: {uris: [uri]}
+                    data: JSON.stringify({uris: [uri]})
                   }).done(function (data) {
                     console.log(data);
                   });

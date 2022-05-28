@@ -49,7 +49,7 @@ app.get('/login', function (req, res) {
   res.cookie(stateKey, state);
 
   // your application requests authorization
-  var scope = 'user-read-private user-read-email user-read-playback-state user-modify-playback-state';
+  var scope = 'user-read-private user-read-email user-read-playback-state user-modify-playback-state playlist-modify-public';
   console.log(querystring.stringify({
     response_type: 'code',
     client_id: client_id,
