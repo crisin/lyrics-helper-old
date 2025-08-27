@@ -13,7 +13,8 @@
     "request": "~2.83.0"
   },
   "scripts": {
-    "start": "env-cmd -f .env.prod node app/app.js",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "dev": "env-cmd -f .env.local nodemon app/app.js"
   },
   "devDependencies": {
