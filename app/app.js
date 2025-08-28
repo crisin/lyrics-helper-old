@@ -71,6 +71,7 @@ app.get('/callback', function (req, res) {
 
   // your application requests refresh and access tokens
   // after checking the state parameter
+  console.log('/callback reached');
 
   var code = req.query.code || null;
   var state = req.query.state || null;
